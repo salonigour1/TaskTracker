@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import CreateTask from "./component/CreateTask";
+import { DataProvider } from "./context/DataContext";
+import AllTask from "./component/AllTask";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <div className="App">
+        <CreateTask />
+        <AllTask />
+      </div>
+    </DataProvider>
   );
 }
 
