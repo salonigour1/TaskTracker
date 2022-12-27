@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import DataContext, { DataProvider } from "../context/DataContext";
 import Button from "./Button";
 
-function CreateTask() {
+function CreateTask({ setCreate }) {
   const { data, setData, addTask } = useContext(DataContext);
 
   const [input, setInput] = useState({
@@ -19,20 +19,48 @@ function CreateTask() {
     e.preventDefault();
     const temp = { ...input, id: new Date().getTime() };
     addTask(temp);
+    setInput({
+      title: "",
+      description: "",
+    });
+    setCreate(false);
     // setData({ ...input, id: new Date().getTime() });
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        onChange={(e) => handleChange(e.target.name, e.target.value)}
-      />
-      <textarea
-        name="description"
-        onChange={(e) => handleChange(e.target.name, e.target.value)}
-      ></textarea>
-      <Button type="submit">Create Task</Button>
+      <div className="formHeading">Create Task</div>
+      <hr />
+      <div className="field">
+        <label>Title</label>
+        <br />
+        <input
+          type="text"
+          name="title"
+          onChange={(e) => handleChange(e.target.name, e.target.value)}
+        />
+      </div>
+      <div className="field">
+        <label>Description</label>
+        <br />
+        <textarea
+          name="description"
+          onChange={(e) => handleChange(e.target.name, e.target.value)}
+        ></textarea>
+      </div>
+      <div>
+        <button type="submit" className="btn">
+          Create Task
+        </button>
+        <button
+          type="button"
+          className="btn cancel"
+          onClick={() => {
+            setCreate(false);
+          }}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

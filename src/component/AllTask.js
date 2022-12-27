@@ -7,7 +7,7 @@ function AllTask() {
   console.log(data);
 
   return (
-    <div>
+    <div className="allCards">
       {data.map((curr, index) => (
         <Card key={index} cardDetail={curr} />
       ))}
