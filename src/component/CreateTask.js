@@ -16,7 +16,6 @@ function CreateTask({ setCreate }) {
     console.log(input);
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
     const temp = { ...input, id: new Date().getTime() };
     addTask(temp);
     setInput({
@@ -51,6 +50,7 @@ function CreateTask({ setCreate }) {
         <button type="submit" className="btn">
           Create Task
         </button>
+
         <button
           type="button"
           className="btn cancel"
